@@ -21,7 +21,7 @@
                         tu energía y tu vida diaria.
                     </p>
                     <div class="hero__actions">
-                        <a href="#planes" class="button button--primary">COMENZAR AHORA</a>
+                        <a href="{{ route('login') }}" class="button button--primary">COMENZAR AHORA</a>
                         <a href="#disciplinas" class="button button--secondary">VER PLANES</a>
                     </div>
                     <div class="hero__stats">

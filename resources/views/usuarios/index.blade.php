@@ -9,7 +9,7 @@
 <body class="p-4 bg-light">
     <div class="container bg-white p-4 rounded shadow-sm">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>Gestión de Usuarios / Socios</h2>
+            <h2>Gestión de Usuarios - Empleados</h2>
             <a href="{{ route('usuarios.create') }}" class="btn btn-primary">+ Nuevo Usuario</a>
         </div>
 

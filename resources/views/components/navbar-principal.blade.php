@@ -21,6 +21,6 @@
             <li><a href="#planes" class="nav-link">Planes</a></li>
             <li><a href="#contacto" class="nav-link">Contacto</a></li>
         </ul>
-        <a href="#planes" class="button button--primary button--nav">ÚNETE AHORA</a>
+        <a href="{{ route('login') }}" class="button button--primary button--nav">ÚNETE AHORA</a>
     </div>
 </nav>

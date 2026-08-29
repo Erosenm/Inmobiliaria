@@ -8,12 +8,13 @@ use App\Models\Pago;
 use App\Models\Suscripcion;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Crear un gimnasio de prueba
+        // 1. Crear el gimnasio base
         $gimnasio = Gimnasio::create([
             'nombre'   => 'Gimnasio Pretorianos',
             'slug'     => 'gimnasio-pretorianos',
@@ -22,27 +23,37 @@ class DatabaseSeeder extends Seeder
             'estado'   => 'activo',
         ]);
 
-        // 2. Crear un Administrador para este gimnasio
-        $admin = User::create([
+        // 2. Super Administrador
+        User::create([
             'gimnasio_id' => $gimnasio->id,
-            'name'        => 'Administrador Pretorianos',
+            'name'        => 'Super Admin',
             'email'       => 'admin@pretorianos.com',
-            'password'    => bcrypt('12345678'),
-            'rol'         => 'administrador',
+            'password'    => Hash::make('12345678'),
+            'rol'         => 'super_admin',
             'telefono'    => '71111111',
         ]);
 
-        // 3. Crear un Socio/Cliente de prueba
-        $socio = User::create([
+        // 3. Personal Administrativo / Recepción
+        User::create([
             'gimnasio_id' => $gimnasio->id,
-            'name'        => 'Juan Pérez',
-            'email'       => 'juan@gmail.com',
-            'password'    => bcrypt('12345678'),
-            'rol'         => 'socio',
+            'name'        => 'Recepción Pretorianos',
+            'email'       => 'recepcion@pretorianos.com',
+            'password'    => Hash::make('12345678'),
+            'rol'         => 'admin',
             'telefono'    => '72222222',
         ]);
 
-        // 4. Crear una Membresía
+        // 4. Cliente
+        $cliente = User::create([
+            'gimnasio_id' => $gimnasio->id,
+            'name'        => 'Juan Pérez',
+            'email'       => 'juan@gmail.com',
+            'password'    => Hash::make('12345678'),
+            'rol'         => 'cliente',
+            'telefono'    => '73333333',
+        ]);
+
+        // 5. Crear Membresía
         $membresia = Membresia::create([
             'gimnasio_id'   => $gimnasio->id,
             'nombre'        => 'Plan Mensual Pase Libre',
@@ -51,17 +62,17 @@ class DatabaseSeeder extends Seeder
             'estado'        => 'activa',
         ]);
 
-        // 5. Crear una Suscripción para el socio
+        // 6. Crear Suscripción asociada al cliente
         $suscripcion = Suscripcion::create([
             'gimnasio_id'  => $gimnasio->id,
-            'user_id'      => $socio->id,
+            'user_id'      => $cliente->id,
             'membresia_id' => $membresia->id,
             'fecha_inicio' => now()->format('Y-m-d'),
             'fecha_fin'    => now()->addDays(30)->format('Y-m-d'),
             'estado'       => 'activa',
         ]);
 
-        // 6. Registrar el Pago de la suscripción
+        // 7. Registrar el Pago de la suscripción
         Pago::create([
             'gimnasio_id'    => $gimnasio->id,
             'suscripcion_id' => $suscripcion->id,
