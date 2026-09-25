@@ -1,183 +1,204 @@
-@extends('layouts.app-gimnasio')
 
-@section('content')
-    <header class="site-header">
-        @include('components.navbar-principal')
-    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRETORIANOS - Performance Club</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-[#090909] text-[#f5f5f5] font-sans antialiased selection:bg-[#f4c430] selection:text-black">
 
-    <main>
-        <section
-            class="hero"
-            id="inicio"
-            style="background-image: linear-gradient(90deg, rgba(0,0,0,0.76) 0%, rgba(0,0,0,0.58) 35%, rgba(0,0,0,0.34) 100%), url('{{ asset('images/fondo.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"
-        >
-            <div class="hero__overlay"></div>
-            <div class="container hero__inner">
-                <div class="hero__content reveal reveal--up">
-                    <div class="eyebrow">FITNESS • PERFORMANCE • DISCIPLINA</div>
-                    <h1>ENTRENA.<br>SUPERA.<br>EVOLUCIONA.</h1>
-                    <p>
-                        Entrena con intensidad, disciplina y estructura para transformar tu cuerpo,
-                        tu energía y tu vida diaria.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="{{ route('login') }}" class="button button--primary">COMENZAR AHORA</a>
-                        <a href="#disciplinas" class="button button--secondary">VER PLANES</a>
+@include('components.navbar-principal')
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.4) 100%), url('{{ asset('images/fondo.jpg') }}');">
+        <div class="max-w-7xl mx-auto px-6 py-12 w-full grid md:grid-cols-2 items-center gap-12">
+            <div class="space-y-6">
+                <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#f4c430] border-l-2 border-[#f4c430] pl-3">
+                    Fitness • Performance • Disciplina
+                </span>
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white leading-none">
+                    Entrena.<br>Supera.<br><span class="text-[#f4c430]">Evoluciona.</span>
+                </h1>
+                <p class="text-base text-white/70 max-w-lg">
+                    Entrena con intensidad, disciplina y estructura para transformar tu cuerpo, tu energía y tu vida diaria.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#planes" class="h-12 px-8 rounded-full bg-[#f4c430] text-black font-extrabold text-xs uppercase tracking-wider flex items-center justify-center hover:bg-[#ffcf33] transition-colors">
+                        Comenzar Ahora
+                    </a>
+                    <a href="#planes" class="h-12 px-8 rounded-full border border-white/20 bg-white/5 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center hover:border-[#f4c430] hover:text-[#f4c430] transition-colors">
+                        Ver Planes
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-8 pt-8 border-t border-white/10">
+                    <div>
+                        <strong class="block text-3xl font-black text-white">+10</strong>
+                        <span class="text-[10px] uppercase tracking-wider text-white/60">Entrenadores</span>
                     </div>
-                    <div class="hero__stats">
-                        <div>
-                            <strong>+10</strong>
-                            <span>Años de experiencia</span>
-                        </div>
-                        <div>
-                            <strong>+5K</strong>
-                            <span>Miembros activos</span>
-                        </div>
+                    <div>
+                        <strong class="block text-3xl font-black text-[#f4c430]">+500</strong>
+                        <span class="text-[10px] uppercase tracking-wider text-white/60">Socios Activos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section id="nosotros" class="py-24 bg-[#0c0c0c] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Por qué elegirnos</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mt-2">Entrena Diferente</h2>
+                <p class="text-white/60 mt-2">Más que un gimnasio: una experiencia pensada para resultados reales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-[#f4c430]/50 transition-all hover:-translate-y-2">
+                    <span class="text-2xl font-black text-[#f4c430] block mb-6">01</span>
+                    <h3 class="text-lg font-bold uppercase mb-2">Equipamiento Premium</h3>
+                    <p class="text-sm text-white/60">Máquinas de alto rendimiento y área de fuerza pensada para cada nivel.</p>
+                </div>
+                <div class="bg-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-[#f4c430]/50 transition-all hover:-translate-y-2">
+                    <span class="text-2xl font-black text-[#f4c430] block mb-6">02</span>
+                    <h3 class="text-lg font-bold uppercase mb-2">Entrenadores</h3>
+                    <p class="text-sm text-white/60">Profesionales especializados en técnica, motivación y progresión sostenida.</p>
+                </div>
+                <div class="bg-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-[#f4c430]/50 transition-all hover:-translate-y-2">
+                    <span class="text-2xl font-black text-[#f4c430] block mb-6">03</span>
+                    <h3 class="text-lg font-bold uppercase mb-2">Horarios Flexibles</h3>
+                    <p class="text-sm text-white/60">Entrena cuando te convenga y adapta tu rutina a tu tiempo y objetivos.</p>
+                </div>
+                <div class="bg-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-[#f4c430]/50 transition-all hover:-translate-y-2">
+                    <span class="text-2xl font-black text-[#f4c430] block mb-6">04</span>
+                    <h3 class="text-lg font-bold uppercase mb-2">Comunidad</h3>
+                    <p class="text-sm text-white/60">Un ambiente enfocado en la superación personal y la disciplina constante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disciplinas Section -->
+    <section id="disciplinas" class="py-24 bg-[#090909]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Especialidades</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mt-2">Nuestras Disciplinas</h2>
+                <p class="text-white/60 mt-2">Áreas especializadas para elevar tu rendimiento al máximo nivel.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Disciplina 1 -->
+                <div class="group relative rounded-3xl overflow-hidden bg-[#121212] border border-white/10 hover:border-[#f4c430]/50 transition-all">
+                    <div class="h-64 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('{{ asset('images/musculacion.jpg') }}');"></div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Fuerza & Hipertrofia</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Musculación</h3>
+                        <p class="text-sm text-white/60 mt-3">Zona completa de peso libre, mancuernas, barras olímpicas y maquinaria biomecánica.</p>
                     </div>
                 </div>
 
-                <div class="scroll-indicator reveal reveal--up" aria-label="Scroll">
-                    <span>SCROLL</span>
-                    <div class="scroll-indicator__line"></div>
+                <!-- Disciplina 2 -->
+                <div class="group relative rounded-3xl overflow-hidden bg-[#121212] border border-white/10 hover:border-[#f4c430]/50 transition-all">
+                    <div class="h-64 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('{{ asset('images/cardio.jpg') }}');"></div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Resistencia & Cardio</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Functional Training</h3>
+                        <p class="text-sm text-white/60 mt-3">Rutinas de alta intensidad para mejorar agilidad, movilidad y acondicionamiento.</p>
+                    </div>
+                </div>
+
+                <!-- Disciplina 3 -->
+                <div class="group relative rounded-3xl overflow-hidden bg-[#121212] border border-white/10 hover:border-[#f4c430]/50 transition-all">
+                    <div class="h-64 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('{{ asset('images/personal.jpg') }}');"></div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Enfoque 1 a 1</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Personal Training</h3>
+                        <p class="text-sm text-white/60 mt-3">Atención personalizada con entrenadores calificados para metas específicas.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section section--dark" id="nosotros">
-            <div class="container">
-                <div class="section-heading reveal reveal--up">
-                    <span class="eyebrow eyebrow--yellow">POR QUÉ ELEGIRNOS</span>
-                    <h2>ENTRENA DIFERENTE</h2>
-                    <p>Más que un gimnasio: una experiencia pensada para resultados reales.</p>
+    <!-- Planes Section -->
+    <section id="planes" class="py-24 bg-[#0c0c0c] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Membresías</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mt-2">Nuestros Planes</h2>
+                <p class="text-white/60 mt-2">Elige la opción que mejor se adapte a tu ritmo de entrenamiento y metas personales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan Básico -->
+                <div class="bg-white/[0.02] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-white/30 transition-all relative overflow-hidden">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-white/60">Pase Mensual</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Plan Básico</h3>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-white">180 Bs</span>
+                            <span class="text-xs text-white/60">/ mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-white/70 mb-8">
+                            <li class="flex items-center gap-3">✓ Acceso a área de musculación</li>
+                            <li class="flex items-center gap-3">✓ Uso de vestidores y lockers</li>
+                            <li class="flex items-center gap-3 text-white/30">✕ Evaluación física inicial</li>
+                            <li class="flex items-center gap-3 text-white/30">✕ Acceso a clases grupales</li>
+                        </ul>
+                    </div>
+                    <a href="{{ route('login') }}" class="w-full h-12 rounded-full border border-white/20 bg-white/5 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                        Elegir Plan
+                    </a>
                 </div>
 
-                <div class="benefits-grid">
-                    @php
-                        $benefits = [
-                            ['number' => '01', 'title' => 'EQUIPAMIENTO PREMIUM', 'text' => 'Máquinas de alto rendimiento y área de fuerza pensada para cada nivel.'],
-                            ['number' => '02', 'title' => 'ENTRENADORES', 'text' => 'Profesionales especializados en técnica, motivación y progresión sostenida.'],
-                            ['number' => '03', 'title' => 'HORARIOS FLEXIBLES', 'text' => 'Entrena cuando te convenga y adapta tu rutina a tu tiempo y objetivos.'],
-                            ['number' => '04', 'title' => 'AMBIENTE', 'text' => 'Un espacio moderno, disciplinado y potente para mantenerte enfocado.'],
-                        ];
-                    @endphp
+                <!-- Plan Pro -->
+                <div class="bg-[#121212] border-2 border-[#f4c430] rounded-3xl p-8 flex flex-col justify-between shadow-[0_0_30px_rgba(244,196,48,0.15)] relative overflow-hidden transform md:-translate-y-4">
+                    <div class="absolute top-4 right-4 bg-[#f4c430] text-black text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider">
+                        Más Popular
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#f4c430]">Pase Semestral</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Plan Pro</h3>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-[#f4c430]">250 Bs</span>
+                            <span class="text-xs text-white/60">/ mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-white/90 mb-8">
+                            <li class="flex items-center gap-3"><span class="text-[#f4c430]">✓</span> Acceso ilimitado total</li>
+                            <li class="flex items-center gap-3"><span class="text-[#f4c430]">✓</span> Evaluación física personalizada</li>
+                            <li class="flex items-center gap-3"><span class="text-[#f4c430]">✓</span> Clases grupales dirigidas</li>
+                            <li class="flex items-center gap-3"><span class="text-[#f4c430]">✓</span> Rutina digital guiada</li>
+                        </ul>
+                    </div>
+                    <a href="{{ route('login') }}" class="w-full h-12 rounded-full bg-[#f4c430] text-black font-extrabold text-xs uppercase tracking-wider flex items-center justify-center hover:bg-[#ffcf33] shadow-[0_10px_20px_rgba(244,196,48,0.2)] transition-all">
+                        Comenzar Ahora
+                    </a>
+                </div>
 
-                    @foreach ($benefits as $benefit)
-                        <article class="benefit-card reveal reveal--up">
-                            <div class="benefit-card__top">
-                                <span class="benefit-card__number">{{ $benefit['number'] }}</span>
-                                <span class="benefit-card__icon">✦</span>
-                            </div>
-                            <h3>{{ $benefit['title'] }}</h3>
-                            <p>{{ $benefit['text'] }}</p>
-                        </article>
-                    @endforeach
+                <!-- Plan Elite -->
+                <div class="bg-white/[0.02] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-white/30 transition-all relative overflow-hidden">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-white/60">Pase Anual</span>
+                        <h3 class="text-2xl font-black uppercase text-white mt-2">Plan Elite</h3>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-white">200 Bs</span>
+                            <span class="text-xs text-white/60">/ mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-white/70 mb-8">
+                            <li class="flex items-center gap-3">✓ Todos los beneficios de Plan Pro</li>
+                            <li class="flex items-center gap-3">✓ 1 Invitado libre por mes</li>
+                            <li class="flex items-center gap-3">✓ Descuento en suplementación</li>
+                            <li class="flex items-center gap-3">✓ Asesoría nutricional básica</li>
+                        </ul>
+                    </div>
+                    <a href="{{ route('login') }}" class="w-full h-12 rounded-full border border-white/20 bg-white/5 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                        Elegir Plan
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section section--light" id="disciplinas">
-            <div class="container">
-                <div class="section-heading reveal reveal--up">
-                    <span class="eyebrow eyebrow--dark">DISCIPLINAS</span>
-                    <h2>ENTRENA CON PROPOSITO</h2>
-                    <p>Variedad de metodologías para construir fuerza, resistencia y mejor rendimiento.</p>
-                </div>
-
-                @php
-                    $disciplines = [
-                        ['name' => 'MUSCULACIÓN', 'description' => 'Fuerza, técnica y progresión constante.', 'image' => '/images/disc-musculacion.svg'],
-                        ['name' => 'FUNCIONAL', 'description' => 'Movimiento, potencia, coordinación y resistencia.', 'image' => '/images/disc-funcional.svg'],
-                        ['name' => 'ZUMBA', 'description' => 'Cardio dinámico, energía y ritmo.', 'image' => '/images/disc-zumba.svg'],
-                        ['name' => 'SPINNING', 'description' => 'Intervalos intensos para mejorar tu resistencia.', 'image' => '/images/disc-spinning.svg'],
-                        ['name' => 'CROSS TRAINING', 'description' => 'Entrenamiento completo y desafiante.', 'image' => '/images/disc-cross-training.svg'],
-                        ['name' => 'CARDIO', 'description' => 'Control, quemas, salud y condición física.', 'image' => '/images/disc-cardio.svg'],
-                        ['name' => 'BOXEO', 'description' => 'Poder, agilidad y disciplina de combate.', 'image' => '/images/disc-boxeo.svg'],
-                        ['name' => 'HIIT', 'description' => 'Máximo esfuerzo en ciclos breves y eficaces.', 'image' => '/images/disc-hiit.svg'],
-                    ];
-                @endphp
-
-                <div class="discipline-grid">
-                    @foreach ($disciplines as $discipline)
-                        <article class="discipline-card reveal reveal--up" style="--discipline-image: url('{{ $discipline['image'] }}');">
-                            <div class="discipline-card__content">
-                                <span class="discipline-card__tag">CLASE</span>
-                                <h3>{{ $discipline['name'] }}</h3>
-                                <p>{{ $discipline['description'] }}</p>
-                                <span class="discipline-card__arrow">→</span>
-                            </div>
-                        </article>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
-        <section class="stats">
-            <div class="container stats__grid">
-                <div class="stat reveal reveal--up">
-                    <span class="stat__value" data-target="10">0</span>
-                    <span class="stat__label">AÑOS DE EXPERIENCIA</span>
-                </div>
-                <div class="stat reveal reveal--up">
-                    <span class="stat__value" data-target="5000">0</span>
-                    <span class="stat__label">MIEMBROS</span>
-                </div>
-                <div class="stat reveal reveal--up">
-                    <span class="stat__value" data-target="20">0</span>
-                    <span class="stat__label">DISCIPLINAS</span>
-                </div>
-                <div class="stat reveal reveal--up">
-                    <span class="stat__value" data-target="365">0</span>
-                    <span class="stat__label">DÍAS AL AÑO</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section--dark section--plans" id="planes">
-            <div class="container">
-                <div class="section-heading reveal reveal--up">
-                    <span class="eyebrow eyebrow--yellow">PLANES</span>
-                    <h2>ELIGE TU RITMO</h2>
-                    <p>Opciones pensadas para cada nivel y propósito.</p>
-                </div>
-
-                @php
-                    $plans = [
-                        ['name' => 'BÁSICO', 'price' => 'Bs. 420', 'tag' => null, 'features' => ['Acceso a gimnasio', 'Uso de área cardio', 'Locker básico']],
-                        ['name' => 'PRO', 'price' => 'Bs. 690', 'tag' => 'MÁS ELEGIDO', 'features' => ['Acceso ilimitado', '1 clase grupal por semana', 'Evaluación inicial', 'Asesoría mensual']],
-                        ['name' => 'PREMIUM', 'price' => 'Bs. 990', 'tag' => null, 'features' => ['Todo de PRO', 'Clases ilimitadas', 'Entrenador personal', 'Prioridad en reservas']],
-                    ];
-                @endphp
-
-                <div class="plans-grid">
-                    @foreach ($plans as $plan)
-                        <article class="plan-card {{ $plan['tag'] ? 'plan-card--featured' : '' }} reveal reveal--up">
-                            @if ($plan['tag'])
-                                <span class="plan-card__tag">{{ $plan['tag'] }}</span>
-                            @endif
-                            <h3>{{ $plan['name'] }}</h3>
-                            <div class="plan-card__price">{{ $plan['price'] }} <span>/ MES</span></div>
-                            <ul>
-                                @foreach ($plan['features'] as $feature)
-                                    <li>{{ $feature }}</li>
-                                @endforeach
-                            </ul>
-                            <a href="#contacto" class="button button--primary plan-card__button">ELEGIR PLAN</a>
-                        </article>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="container cta__inner reveal reveal--up">
-                <div>
-                    <span class="eyebrow eyebrow--yellow">TU MEJOR VERSIÓN</span>
-                    <h2>EMPIEZA HOY.</h2>
-                </div>
-                <a href="#contacto" class="button button--primary">ÚNETE AHORA</a>
-            </div>
-        </section>
-    </main>
-
-    @include('components.footer-principal')
-@endsection
+@include('components.footer-principal')

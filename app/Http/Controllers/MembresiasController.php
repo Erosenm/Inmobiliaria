@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Membresia;x
+use App\Models\Membresia;
 use Illuminate\Http\Request;
 
 class MembresiasController extends Controller
@@ -24,17 +24,16 @@ class MembresiasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:100',
-            'precio' => 'required|numeric|min:0',
-            'duracion' => 'required|integer|min:1',
-            'descripcion' => 'nullable|string|max:255',
+            'nombre'        => 'required|string|max:100',
+            'precio'        => 'required|numeric|min:0',
+            'duracion_dias' => 'required|integer|min:1',
         ]);
 
         Membresia::create([
-            'gimnasio_id' => auth()->user()->gimnasio_id,
-            'nombre'      => $request->nombre,
-            'precio'      => $request->precio,
-            'duracion'    => $request->duracion,
+            'gimnasio_id'   => auth()->user()->gimnasio_id,
+            'nombre'        => $request->nombre,
+            'precio'        => $request->precio,
+            'duracion_dias' => $request->duracion_dias,
         ]);
 
         return redirect()->route('membresias.index')

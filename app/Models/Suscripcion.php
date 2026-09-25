@@ -10,6 +10,8 @@ class Suscripcion extends Model
 
     protected $fillable = ['gimnasio_id', 'user_id', 'membresia_id', 'fecha_inicio', 'fecha_fin', 'estado'];
 
+    protected $casts = ['fecha_inicio' => 'date', 'fecha_fin' => 'date', 'estado' => 'boolean'];
+
     public function gimnasio()
     {
         return $this->belongsTo(Gimnasio::class);

@@ -1,58 +1,43 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Usuario</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="p-4 bg-light">
-    <div class="container bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
-        <h3 class="mb-3">Registrar Nuevo Usuario</h3>
+@extends('layouts.dashboard')
 
-        <form action="{{ route('usuarios.store') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label class="form-label">Gimnasio</label>
-                <select name="gimnasio_id" class="form-select" required>
-                    @foreach($gimnasios as $gimnasio)
-                        <option value="{{ $gimnasio->id }}">{{ $gimnasio->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
+@section('content')
+<div class="max-w-xl space-y-6">
+    <h2 class="text-xl font-bold text-gray-800">Registrar Nuevo Usuario</h2>
 
-            <div class="mb-3">
-                <label class="form-label">Nombre Completo</label>
-                <input type="text" name="name" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Correo Electrónico</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Contraseña</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Rol</label>
-                <select name="rol" class="form-select" required>
-                    <option value="socio">Socio / Cliente</option>
-                    <option value="recepcionista">Recepcionista</option>
-                    <option value="administrador">Administrador</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Teléfono (Opcional)</label>
-                <input type="text" name="telefono" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-success">Guardar Usuario</button>
-            <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
-        </form>
-    </div>
-</body>
-</html>
+    <form action="{{ route('usuarios.store') }}" method="POST" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+        @csrf
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+            <input type="text" name="name" value="{{ old('name') }}" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+            <input type="email" name="email" value="{{ old('email') }}" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+            <input type="password" name="password" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            @error('password') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Rol</label>
+            <select name="rol" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <option value="cliente">Socio / Cliente</option>
+                <option value="recepcionista">Recepcionista</option>
+                <option value="admin">Administrador</option>
+            </select>
+            @error('rol') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono (Opcional)</label>
+            <input type="text" name="telefono" value="{{ old('telefono') }}" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+        </div>
+        <div class="flex justify-end gap-3 pt-2">
+            <a href="{{ route('usuarios.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200">Cancelar</a>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700">Guardar Usuario</button>
+        </div>
+    </form>
+</div>
+@endsection

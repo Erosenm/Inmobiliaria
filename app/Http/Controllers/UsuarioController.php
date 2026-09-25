@@ -16,7 +16,6 @@ class UsuarioController extends Controller
         return view('usuarios.index', compact('usuarios'));
     }
 
-    
     public function create()
     {
         return view('usuarios.create');
@@ -28,12 +27,12 @@ class UsuarioController extends Controller
             'name'     => 'required|string|max:100',
             'email'    => 'required|email|max:150|unique:users,email',
             'password' => 'required|string|min:6',
-            'rol'      => 'required|in:administrador,recepcionista,socio',
+            'rol'      => 'required|in:admin,recepcionista,cliente',
             'telefono' => 'nullable|string|max:20',
         ]);
 
         User::create([
-            'gimnasio_id' => auth()->user()->gimnasio_id, 
+            'gimnasio_id' => auth()->user()->gimnasio_id,
             'name'        => $request->name,
             'email'       => $request->email,
             'password'    => bcrypt($request->password),

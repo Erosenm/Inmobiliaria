@@ -1,53 +1,32 @@
-<x-app-layout>
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Crear Nueva Membresía</h2>
+@extends('layouts.dashboard')
 
-                <form action="{{ route('membresias.store') }}" method="POST" class="space-y-4">
-                    @csrf
+@section('content')
+<div class="max-w-xl space-y-6">
+    <h2 class="text-xl font-bold text-gray-800">Crear Nueva Membresía</h2>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Nombre del Plan</label>
-                        <input type="text" name="nombre" value="{{ old('nombre') }}" required 
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        @error('nombre') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Precio (Bs.)</label>
-                            <input type="number" step="0.01" name="precio" value="{{ old('precio') }}" required 
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            @error('precio') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Duración (Días)</label>
-                            <input type="number" name="duracion_dias" value="{{ old('duracion_dias', 30) }}" required 
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                            @error('duracion_dias') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Descripción (Opcional)</label>
-                        <textarea name="descripcion" rows="3" 
-                                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('descripcion') }}</textarea>
-                    </div>
-
-                    <div class="flex justify-end space-x-3 pt-4">
-                        <a href="{{ route('membresias.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-300">
-                            Cancelar
-                        </a>
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-indigo-700">
-                            Guardar Membresía
-                        </button>
-                    </div>
-                </form>
-
+    <form action="{{ route('membresias.store') }}" method="POST" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+        @csrf
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Plan</label>
+            <input type="text" name="nombre" value="{{ old('nombre') }}" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            @error('nombre') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Precio (Bs.)</label>
+                <input type="number" step="0.01" name="precio" value="{{ old('precio') }}" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                @error('precio') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Duración (Días)</label>
+                <input type="number" name="duracion_dias" value="{{ old('duracion_dias', 30) }}" required class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                @error('duracion_dias') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
         </div>
-    </div>
-</x-app-layout>
+        <div class="flex justify-end gap-3 pt-2">
+            <a href="{{ route('membresias.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200">Cancelar</a>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700">Guardar Membresía</button>
+        </div>
+    </form>
+</div>
+@endsection

@@ -1,58 +1,49 @@
-<footer class="site-footer" id="contacto">
-    <div class="container footer-grid">
-        <div class="footer-brand">
-            <div class="brand brand--footer" aria-label="VOLTARE gym">
-                <span class="brand__mark">V</span>
-                <div class="brand__text">
-                    <span>PRETORIANOS</span>
-                    <small>PERFORMANCE CLUB</small>
+ <!-- Contacto / Footer Section -->
+    <footer id="contacto" class="bg-[#070707] border-t border-white/10 pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Columna 1: Info -->
+                <div class="space-y-4 md:col-span-2">
+                    <a href="#" class="flex items-center gap-3 tracking-widest uppercase font-black">
+                        <div class="w-8 h-8 rounded-full border border-[#f4c430] bg-white/5 flex items-center justify-center text-[#f4c430] text-sm font-black">
+                            P
+                        </div>
+                        <span class="text-base text-white">Pretorianos</span>
+                    </a>
+                    <p class="text-sm text-white/60 max-w-sm">
+                        Club de entrenamiento enfocado en fuerza, disciplina y resultados reales. Supera tus límites con nosotros.
+                    </p>
+                </div>
+
+                <!-- Columna 2: Ubicación & Horario -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-[#f4c430] mb-4">Ubicación y Horarios</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li> Av. Principal #123</li>
+                        <li> Lunes a Viernes: 06:00 - 22:00</li>
+                        <li> Sábados: 08:00 - 18:00</li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-[#f4c430] mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li> +591 70000000</li>
+                        <li> contacto@pretorianos.com</li>
+                        <li> WhatsApp Directo</li>
+                    </ul>
                 </div>
             </div>
-            <p>
-                Un gimnasio de alto rendimiento para personas que quieren entrenar con disciplina,
-                intensidad y resultados reales.
-            </p>
-        </div>
 
-        <div>
-            <h3>Acceso rápido</h3>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#disciplinas">Disciplinas</a></li>
-                <li><a href="#planes">Planes</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Disciplinas</h3>
-            <ul>
-                <li><a href="#disciplinas">Musculación</a></li>
-                <li><a href="#disciplinas">Cross Training</a></li>
-                <li><a href="#disciplinas">Cardio</a></li>
-                <li><a href="#disciplinas">Boxeo</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Contacto</h3>
-            <ul class="footer-contact">
-                <li>Av. de la Fuerza 154, Distrito 9</li>
-                <li>+591 707 123 45</li>
-                <li>hola@voltaregym.com</li>
-                <li>Lun - Sab / 6:00 - 22:00</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <div class="container footer-bottom__inner">
-            <span>© <span id="currentYear"></span> VOLTARE. Todos los derechos reservados.</span>
-            <div class="socials">
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="Facebook">FB</a>
-                <a href="#" aria-label="YouTube">YT</a>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+                <p>&copy; {{ date('Y') }} PRETORIANOS Performance Club. Todos los derechos reservados.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Términos</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+    
+</body>

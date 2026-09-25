@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pago extends Model
 {
     protected $table = 'pagos';
+    protected $casts = ['pagado_el' => 'datetime',];
 
     protected $fillable = ['gimnasio_id', 'suscripcion_id', 'monto', 'metodo_pago', 'pagado_el'];
 

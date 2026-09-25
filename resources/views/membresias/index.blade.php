@@ -1,62 +1,46 @@
-<x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                
-                {{-- Encabezado --}}
-                <div class="flex justify-between items-center mb-6">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Planes de Membresías</h2>
-                        <p class="text-sm text-gray-500">Gestiona los planes disponibles para los socios del gimnasio.</p>
-                    </div>
-                    <a href="{{ route('membresias.create') }}" 
-                       class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 transition">
-                        + Nueva Membresía
-                    </a>
-                </div>
+@extends('layouts.dashboard')
 
-                {{-- Mensaje de éxito --}}
-                @if(session('success'))
-                    <div class="mb-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                {{-- Tabla de Membresías --}}
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="border-b bg-gray-50 text-xs text-gray-500 uppercase tracking-wider">
-                                <th class="p-3">Nombre del Plan</th>
-                                <th class="p-3">Precio</th>
-                                <th class="p-3">Duración (Días)</th>
-                                <th class="p-3">Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 text-sm">
-                            @forelse($membresias as $membresia)
-                                <tr class="hover:bg-gray-50 transition">
-                                    <td class="p-3 font-semibold text-gray-800">{{ $membresia->nombre }}</td>
-                                    <td class="p-3 font-bold text-emerald-600">Bs. {{ number_format($membresia->precio, 2) }}</td>
-                                    <td class="p-3">
-                                        <span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-md font-medium text-xs">
-                                            {{ $membresia->duracion_dias }} días
-                                        </span>
-                                    </td>
-                                    <td class="p-3 text-gray-600">{{ $membresia->descripcion ?? 'Sin descripción' }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="p-6 text-center text-gray-500">
-                                        No hay planes registrados aún. Haz clic en <strong>"+ Nueva Membresía"</strong> para crear el primero.
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
+@section('content')
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-xl font-bold text-gray-800">Planes de Membresías</h2>
+            <p class="text-sm text-gray-500">Gestiona los planes disponibles para los socios del gimnasio.</p>
         </div>
+        <a href="{{ route('membresias.create') }}" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">
+            <i class="fa-solid fa-plus"></i> Nueva Membresía
+        </a>
     </div>
-</x-app-layout>
+
+    @if (session('success'))
+        <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 rounded text-sm">{{ session('success') }}</div>
+    @endif
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="text-left text-gray-400 uppercase text-xs bg-gray-50">
+                    <th class="px-6 py-3 font-semibold">Nombre del Plan</th>
+                    <th class="px-6 py-3 font-semibold">Precio</th>
+                    <th class="px-6 py-3 font-semibold">Duración</th>
+                    <th class="px-6 py-3 font-semibold">Estado</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50">
+                @forelse ($membresias as $membresia)
+                    <tr>
+                        <td class="px-6 py-3 font-semibold text-gray-800">{{ $membresia->nombre }}</td>
+                        <td class="px-6 py-3 font-bold text-emerald-600">Bs. {{ number_format($membresia->precio, 2) }}</td>
+                        <td class="px-6 py-3"><span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-md font-medium text-xs">{{ $membresia->duracion_dias }} días</span></td>
+                        <td class="px-6 py-3">
+                            <span class="px-2 py-1 rounded-md font-medium text-xs {{ $membresia->estado === 'activa' ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-500' }}">{{ ucfirst($membresia->estado) }}</span>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="4" class="px-6 py-6 text-center text-gray-400">No hay planes registrados aún. Haz clic en <strong>"Nueva Membresía"</strong> para crear el primero.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection

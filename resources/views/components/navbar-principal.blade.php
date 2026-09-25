@@ -1,26 +1,25 @@
-<nav class="site-header__nav" aria-label="Navegación principal">
-    <div class="brand" aria-label="VOLTARE gym">
-        <span class="brand__mark">V</span>
-        <div class="brand__text">
-            <span>PRETORIANOS</span>
-            <small>PERFORMANCE CLUB</small>
+<header class="fixed top-0 left-0 w-full z-50 bg-[#090909]/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 tracking-widest uppercase font-black">
+                <div class="w-10 h-10 rounded-full border border-[#f4c430] bg-white/5 flex items-center justify-center text-[#f4c430] text-lg font-black">
+                    P
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-lg text-white">Pretorianos</span>
+                    <small class="text-[9px] tracking-[0.2em] text-white/60 mt-1">Performance Club</small>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#inicio" class="text-xs uppercase tracking-widest text-white/80 hover:text-[#f4c430] transition-colors">Inicio</a>
+                <a href="#nosotros" class="text-xs uppercase tracking-widest text-white/80 hover:text-[#f4c430] transition-colors">Nosotros</a>
+                <a href="#disciplinas" class="text-xs uppercase tracking-widest text-white/80 hover:text-[#f4c430] transition-colors">Disciplinas</a>
+                <a href="#planes" class="text-xs uppercase tracking-widest text-white/80 hover:text-[#f4c430] transition-colors">Planes</a>
+                <a href="#contacto" class="text-xs uppercase tracking-widest text-white/80 hover:text-[#f4c430] transition-colors">Contacto</a>
+            </nav>
+
+            <a href="{{ route('login') }}" class="inline-flex items-center justify-center h-11 px-6 rounded-full bg-gradient-to-r from-[#f4c430] to-[#ffcf33] text-black font-extrabold text-xs uppercase tracking-wider hover:scale-105 shadow-[0_10px_25px_rgba(244,196,48,0.25)] transition-all">
+                Únete Ahora
+            </a>
         </div>
-    </div>
-
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <div class="site-nav">
-        <ul class="site-nav__list">
-            <li><a href="#inicio" class="nav-link">Inicio</a></li>
-            <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-            <li><a href="#disciplinas" class="nav-link">Disciplinas</a></li>
-            <li><a href="#planes" class="nav-link">Planes</a></li>
-            <li><a href="#contacto" class="nav-link">Contacto</a></li>
-        </ul>
-        <a href="{{ route('login') }}" class="button button--primary button--nav">ÚNETE AHORA</a>
-    </div>
-</nav>
+    </header>
