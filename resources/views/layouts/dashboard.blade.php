@@ -9,7 +9,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
-<body class="bg-[#edf1f5] font-sans antialiased" x-data="{ sidebarOpen: true }">
+<body class="bg-[#edf1f5] font-sans antialiased" x-data="{ sidebarOpen: true, darkMode: localStorage.getItem('gimnasio-theme') === 'dark' }" x-bind:class="{ 'dark-theme': darkMode }">
 
     <div class="flex min-h-screen w-full items-stretch">
 
@@ -97,18 +97,25 @@
         <div class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
 
             <!-- Navbar Top -->
-            <header class="bg-white shadow-sm border-b border-gray-200 h-20 flex items-center justify-between px-6 sticky top-0 z-10">
+            <header class="theme-header bg-white shadow-sm border-b border-gray-200 h-20 flex items-center justify-between px-6 sticky top-0 z-10">
                 <div class="flex items-center space-x-4 w-full">
-                    <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 hover:text-gray-700 focus:outline-none shrink-0">
+                    <button @click="sidebarOpen = !sidebarOpen" class="theme-control text-gray-500 hover:text-gray-700 focus:outline-none shrink-0">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
                     <div class="relative hidden sm:block flex-1 max-w-[680px]">
                         <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-sm"></i>
-                        <input type="text" placeholder="Buscar socios, pagos..." class="pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                        <input type="text" placeholder="Buscar socios, pagos..." class="theme-input pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-4 shrink-0">
+                    <button type="button"
+                            @click="darkMode = !darkMode; localStorage.setItem('gimnasio-theme', darkMode ? 'dark' : 'light')"
+                            class="theme-control w-10 h-10 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                            :aria-label="darkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
+                        <i class="fa-solid fa-moon" x-show="!darkMode"></i>
+                        <i class="fa-solid fa-sun" x-show="darkMode"></i>
+                    </button>
                     <div class="text-right">
                         <p class="text-xs text-blue-600 font-bold uppercase tracking-wider">{{ $nombreRol }}</p>
                     </div>
@@ -119,7 +126,7 @@
             </header>
 
             <!-- Sección Dinámica -->
-            <main class="flex-1 p-4 sm:p-6 bg-[#edf1f5] min-w-0">
+            <main class="theme-main flex-1 p-4 sm:p-6 bg-[#edf1f5] min-w-0">
                 @yield('content')
             </main>
 
